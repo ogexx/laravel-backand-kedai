@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Products')
+@section('title', 'Product')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -17,8 +17,8 @@
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Products</a></div>
-                    <div class="breadcrumb-item">All Products</div>
+                    <div class="breadcrumb-item"><a href="#">Product</a></div>
+                    <div class="breadcrumb-item">All Product</div>
                 </div>
             </div>
             <div class="section-body">
@@ -27,7 +27,6 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
@@ -54,6 +53,7 @@
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Price</th>
+                                            <th>Stock</th>
                                             <th>Photo</th>
                                             <th>Created At</th>
                                             <th>Action</th>
@@ -61,24 +61,25 @@
                                         @foreach ($products as $product)
                                             <tr>
 
-                                                <td>{{ $product->name }}
+                                             <td>{{ $product->name }}
                                                 </td>
-                                                <td>
-                                                    {{ $product->category }}
+                                                <td>{{ $product->category }}
                                                 </td>
-                                                
-                                                    {{-- {{ $product->price }} --}}
-                                                    <td>   {{ sprintf('Rp. %s', number_format($product->price)) }}
+                                                <td>   {{ sprintf('Rp. %s', number_format($product->price)) }}
+                                                </td>
+                                                <td>{{ $product->stock }}
                                                 </td>
                                                 <td>
                                                     @if ($product->image)
-                                                        <img src="{{ asset('storage/products/' . $product->image) }}"
-                                                            alt="" width="100px" class="img-thumbnail">
-                                                    @else
+                                                    <img src="{{ asset('storage/products/'.$product->image) }}" alt=""
+                                                        width="100px" class="img-thumbnail">
+                                                        @else
                                                         <span class="badge badge-danger">No Image</span>
-                                                    @endif
+
+                                                @endif
 
                                                 </td>
+
                                                 <td>{{ $product->created_at }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
